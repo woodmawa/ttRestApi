@@ -1,0 +1,10 @@
+import model.Customer
+
+model {
+    List<Customer> customerList
+    Long customerCount
+}
+
+json.customerList {
+    name "hello william"
+}

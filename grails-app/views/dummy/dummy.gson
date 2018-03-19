@@ -1,0 +1,5 @@
+package dummy
+
+json.message {
+    hello "world"
+}

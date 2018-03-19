@@ -1,0 +1,9 @@
+import ttrestapi.JsonApiBook
+
+model {
+    List<JsonApiBook> jsonApiBookList
+    Long jsonApiBookCount
+}
+
+//map model name in index.gson to name of model variable in the base template _jsonApiBook
+json tmpl.jsonApiBook ( "myBook", jsonApiBookList)

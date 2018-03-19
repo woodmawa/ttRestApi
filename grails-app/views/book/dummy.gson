@@ -1,0 +1,5 @@
+package book
+
+json.message {
+    hello "world"
+}

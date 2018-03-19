@@ -1,0 +1,8 @@
+
+import ttrestapi.JsonApiBook
+
+model {
+    JsonApiBook jsonApiBook
+}
+
+json tmpl.jsonApiBook(jsonApiBook)

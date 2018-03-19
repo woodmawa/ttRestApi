@@ -1,0 +1,11 @@
+import ttrestapi.JsonApiBook
+
+model {
+    //JsonApiBook jsonApiBook
+    JsonApiBook myBook
+}
+
+//use helper object to render the model in JsonApi format
+//json jsonapi.render(jsonApiBook, [meta: [name:"wills meta data"], jsonApiObject:true])
+json jsonapi.render(myBook, [meta: [name:"wills meta data"], jsonApiObject:true])
+
