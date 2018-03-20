@@ -1,4 +1,4 @@
-package model
+package ttrestapi.model
 
 import grails.testing.mixin.integration.Integration
 import grails.gorm.transactions.Rollback
