@@ -1,23 +1,30 @@
-package model
+package ttrestapi.model
 
 import grails.validation.ValidationException
+import groovy.transform.CompileStatic
+
 import static org.springframework.http.HttpStatus.*
 
-class SiteController {
+@CompileStatic
+class SiteRestController {
+
+    static responseFormats = ['json']
+    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     SiteService siteService
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
-
     def index(Integer max) {
+        println "SiteRest.customerRest.index method invoked "
         params.max = Math.min(max ?: 10, 100)
         respond siteService.list(params), model:[siteCount: siteService.count()]
     }
 
     def show(Long id) {
+        println "SiteRest.customerRest.show method invoked "
         respond siteService.get(id)
     }
 
+    /*
     def create() {
         respond new Site(params)
     }
@@ -81,7 +88,7 @@ class SiteController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.deleted.message', args: [message(code: 'site.label', default: 'Site'), id])
-                redirect action:"index", method:"GET"
+                redirect action:"customerRest.index", method:"GET"
             }
             '*'{ render status: NO_CONTENT }
         }
@@ -91,9 +98,10 @@ class SiteController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.not.found.message', args: [message(code: 'site.label', default: 'Site'), params.id])
-                redirect action: "index", method: "GET"
+                redirect action: "customerRest.index", method: "GET"
             }
             '*'{ render status: NOT_FOUND }
         }
     }
+    */
 }

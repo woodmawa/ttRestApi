@@ -1,4 +1,4 @@
-package model
+package ttrestapi.model
 
 class Customer {
 

@@ -1,9 +1,0 @@
-import model.Customer
-
-model {
-    Customer customer
-}
-
-json.customer {
-    name "hello william"
-}

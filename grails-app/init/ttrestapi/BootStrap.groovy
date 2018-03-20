@@ -1,7 +1,7 @@
 package ttrestapi
 
-import model.Customer
-import model.Site
+import ttrestapi.model.Customer
+import ttrestapi.model.Site
 
 class BootStrap {
 

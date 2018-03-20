@@ -1,6 +1,7 @@
-package model
+package ttrestapi.model
 
 import grails.validation.ValidationException
+import grails.web.servlet.mvc.GrailsParameterMap
 import groovy.transform.CompileStatic
 
 import static org.springframework.http.HttpStatus.*
@@ -14,14 +15,22 @@ class CustomerRestController {
     CustomerService customerService
 
     def index(Integer max) {
-        println "CustomerRest.index method invoked"
+        println "CustomerRest.customerRest.index method invoked"
         params.max = Math.min(max ?: 10, 100)
-        respond customerService.list(params), [model:[customerCount: customerService.count()], view:"fred"]
+        params.put("fetch", [sites:"join"])   //force join fetch on sites
+        println "param map to customerService contains $params"
+
+        Collection result = customerService.list(params)
+        println "service returned collection  $result"
+
+ //       respond customerService.list(params), [ttrestapi.model:[customerCount: customerService.count()], view:"fred"]
+        respond result, [model:[customerCount: customerService.count()]]
     }
 
     def show(Long id) {
-        println "CustomerRest.show method invoked"
-        respond customerService.get(id), view:"fred"
+        println "CustomerRest.customerRest.show method invoked"
+        //respond customerService.get(id), view:"fred"
+        respond customerService.get(id)
     }
 
     /*
@@ -88,7 +97,7 @@ class CustomerRestController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.deleted.message', args: [message(code: 'customer.label', default: 'Customer'), id])
-                redirect action:"index", method:"GET"
+                redirect action:"customerRest.index", method:"GET"
             }
             '*'{ render status: NO_CONTENT }
         }
@@ -98,7 +107,7 @@ class CustomerRestController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.not.found.message', args: [message(code: 'customer.label', default: 'Customer'), params.id])
-                redirect action: "index", method: "GET"
+                redirect action: "customerRest.index", method: "GET"
             }
             '*'{ render status: NOT_FOUND }
         }

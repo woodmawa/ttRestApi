@@ -1,11 +1,11 @@
-package model
+package ttrestapi.model
 
 import grails.testing.gorm.DomainUnitTest
 import grails.testing.web.controllers.ControllerUnitTest
 import grails.validation.ValidationException
 import spock.lang.*
 
-class CustomerControllerSpec extends Specification implements ControllerUnitTest<CustomerController>, DomainUnitTest<Customer> {
+class SiteControllerSpec extends Specification implements ControllerUnitTest<SiteController>, DomainUnitTest<Site> {
 
     def populateValidParams(params) {
         assert params != null
@@ -15,27 +15,27 @@ class CustomerControllerSpec extends Specification implements ControllerUnitTest
         assert false, "TODO: Provide a populateValidParams() implementation for this generated test suite"
     }
 
-    void "Test the index action returns the correct model"() {
+    void "Test the customerRest.index action returns the correct ttrestapi.model"() {
         given:
-        controller.customerService = Mock(CustomerService) {
+        controller.siteService = Mock(SiteService) {
             1 * list(_) >> []
             1 * count() >> 0
         }
 
-        when:"The index action is executed"
+        when:"The customerRest.index action is executed"
         controller.index()
 
-        then:"The model is correct"
-        !model.customerList
-        model.customerCount == 0
+        then:"The ttrestapi.model is correct"
+        !model.siteList
+        model.siteCount == 0
     }
 
-    void "Test the create action returns the correct model"() {
+    void "Test the create action returns the correct ttrestapi.model"() {
         when:"The create action is executed"
         controller.create()
 
-        then:"The model is correctly created"
-        model.customer!= null
+        then:"The ttrestapi.model is correctly created"
+        model.site!= null
     }
 
     void "Test the save action with a null instance"() {
@@ -45,14 +45,14 @@ class CustomerControllerSpec extends Specification implements ControllerUnitTest
         controller.save(null)
 
         then:"A 404 error is returned"
-        response.redirectedUrl == '/customer/index'
+        response.redirectedUrl == '/site/customerRest.index'
         flash.message != null
     }
 
     void "Test the save action correctly persists"() {
         given:
-        controller.customerService = Mock(CustomerService) {
-            1 * save(_ as Customer)
+        controller.siteService = Mock(SiteService) {
+            1 * save(_ as Site)
         }
 
         when:"The save action is executed with a valid instance"
@@ -60,68 +60,68 @@ class CustomerControllerSpec extends Specification implements ControllerUnitTest
         request.contentType = FORM_CONTENT_TYPE
         request.method = 'POST'
         populateValidParams(params)
-        def customer = new Customer(params)
-        customer.id = 1
+        def site = new Site(params)
+        site.id = 1
 
-        controller.save(customer)
+        controller.save(site)
 
-        then:"A redirect is issued to the show action"
-        response.redirectedUrl == '/customer/show/1'
+        then:"A redirect is issued to the customerRest.show action"
+        response.redirectedUrl == '/site/customerRest.show/1'
         controller.flash.message != null
     }
 
     void "Test the save action with an invalid instance"() {
         given:
-        controller.customerService = Mock(CustomerService) {
-            1 * save(_ as Customer) >> { Customer customer ->
-                throw new ValidationException("Invalid instance", customer.errors)
+        controller.siteService = Mock(SiteService) {
+            1 * save(_ as Site) >> { Site site ->
+                throw new ValidationException("Invalid instance", site.errors)
             }
         }
 
         when:"The save action is executed with an invalid instance"
         request.contentType = FORM_CONTENT_TYPE
         request.method = 'POST'
-        def customer = new Customer()
-        controller.save(customer)
+        def site = new Site()
+        controller.save(site)
 
-        then:"The create view is rendered again with the correct model"
-        model.customer != null
+        then:"The create view is rendered again with the correct ttrestapi.model"
+        model.site != null
         view == 'create'
     }
 
-    void "Test the show action with a null id"() {
+    void "Test the customerRest.show action with a null id"() {
         given:
-        controller.customerService = Mock(CustomerService) {
+        controller.siteService = Mock(SiteService) {
             1 * get(null) >> null
         }
 
-        when:"The show action is executed with a null domain"
+        when:"The customerRest.show action is executed with a null domain"
         controller.show(null)
 
         then:"A 404 error is returned"
         response.status == 404
     }
 
-    void "Test the show action with a valid id"() {
+    void "Test the customerRest.show action with a valid id"() {
         given:
-        controller.customerService = Mock(CustomerService) {
-            1 * get(2) >> new Customer()
+        controller.siteService = Mock(SiteService) {
+            1 * get(2) >> new Site()
         }
 
-        when:"A domain instance is passed to the show action"
+        when:"A domain instance is passed to the customerRest.show action"
         controller.show(2)
 
-        then:"A model is populated containing the domain instance"
-        model.customer instanceof Customer
+        then:"A ttrestapi.model is populated containing the domain instance"
+        model.site instanceof Site
     }
 
     void "Test the edit action with a null id"() {
         given:
-        controller.customerService = Mock(CustomerService) {
+        controller.siteService = Mock(SiteService) {
             1 * get(null) >> null
         }
 
-        when:"The show action is executed with a null domain"
+        when:"The customerRest.show action is executed with a null domain"
         controller.edit(null)
 
         then:"A 404 error is returned"
@@ -130,15 +130,15 @@ class CustomerControllerSpec extends Specification implements ControllerUnitTest
 
     void "Test the edit action with a valid id"() {
         given:
-        controller.customerService = Mock(CustomerService) {
-            1 * get(2) >> new Customer()
+        controller.siteService = Mock(SiteService) {
+            1 * get(2) >> new Site()
         }
 
-        when:"A domain instance is passed to the show action"
+        when:"A domain instance is passed to the customerRest.show action"
         controller.edit(2)
 
-        then:"A model is populated containing the domain instance"
-        model.customer instanceof Customer
+        then:"A ttrestapi.model is populated containing the domain instance"
+        model.site instanceof Site
     }
 
 
@@ -149,14 +149,14 @@ class CustomerControllerSpec extends Specification implements ControllerUnitTest
         controller.update(null)
 
         then:"A 404 error is returned"
-        response.redirectedUrl == '/customer/index'
+        response.redirectedUrl == '/site/customerRest.index'
         flash.message != null
     }
 
     void "Test the update action correctly persists"() {
         given:
-        controller.customerService = Mock(CustomerService) {
-            1 * save(_ as Customer)
+        controller.siteService = Mock(SiteService) {
+            1 * save(_ as Site)
         }
 
         when:"The save action is executed with a valid instance"
@@ -164,31 +164,31 @@ class CustomerControllerSpec extends Specification implements ControllerUnitTest
         request.contentType = FORM_CONTENT_TYPE
         request.method = 'PUT'
         populateValidParams(params)
-        def customer = new Customer(params)
-        customer.id = 1
+        def site = new Site(params)
+        site.id = 1
 
-        controller.update(customer)
+        controller.update(site)
 
-        then:"A redirect is issued to the show action"
-        response.redirectedUrl == '/customer/show/1'
+        then:"A redirect is issued to the customerRest.show action"
+        response.redirectedUrl == '/site/customerRest.show/1'
         controller.flash.message != null
     }
 
     void "Test the update action with an invalid instance"() {
         given:
-        controller.customerService = Mock(CustomerService) {
-            1 * save(_ as Customer) >> { Customer customer ->
-                throw new ValidationException("Invalid instance", customer.errors)
+        controller.siteService = Mock(SiteService) {
+            1 * save(_ as Site) >> { Site site ->
+                throw new ValidationException("Invalid instance", site.errors)
             }
         }
 
         when:"The save action is executed with an invalid instance"
         request.contentType = FORM_CONTENT_TYPE
         request.method = 'PUT'
-        controller.update(new Customer())
+        controller.update(new Site())
 
-        then:"The edit view is rendered again with the correct model"
-        model.customer != null
+        then:"The edit view is rendered again with the correct ttrestapi.model"
+        model.site != null
         view == 'edit'
     }
 
@@ -199,13 +199,13 @@ class CustomerControllerSpec extends Specification implements ControllerUnitTest
         controller.delete(null)
 
         then:"A 404 is returned"
-        response.redirectedUrl == '/customer/index'
+        response.redirectedUrl == '/site/customerRest.index'
         flash.message != null
     }
 
     void "Test the delete action with an instance"() {
         given:
-        controller.customerService = Mock(CustomerService) {
+        controller.siteService = Mock(SiteService) {
             1 * delete(2)
         }
 
@@ -214,8 +214,8 @@ class CustomerControllerSpec extends Specification implements ControllerUnitTest
         request.method = 'DELETE'
         controller.delete(2)
 
-        then:"The user is redirected to index"
-        response.redirectedUrl == '/customer/index'
+        then:"The user is redirected to customerRest.index"
+        response.redirectedUrl == '/site/customerRest.index'
         flash.message != null
     }
 }

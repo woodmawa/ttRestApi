@@ -1,0 +1,7 @@
+import ttrestapi.model.Site
+
+model {
+    Site site
+}
+
+json tmpl.siteRest(site)

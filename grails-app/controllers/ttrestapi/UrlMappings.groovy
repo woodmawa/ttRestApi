@@ -1,6 +1,6 @@
 package ttrestapi
 
-import model.Customer
+import ttrestapi.model.Customer
 
 class UrlMappings {
 
@@ -10,7 +10,7 @@ class UrlMappings {
 
         //or try to declare with explicit mappings
         "/api/sites" (controller: "siteRest", action: "index")
-        "/api/sites/$id" (controller: "siteRest", action: "show", view: "show")
+        "/api/sites/$id" (controller: "siteRest", action: "show", view: "customerRest.show")
 
         "/$controller/$action?/$id?(.$format)?"{
             constraints {

@@ -1,0 +1,7 @@
+import ttrestapi.model.Site
+
+model {
+    Site site
+}
+
+json jsonapi.render (site)

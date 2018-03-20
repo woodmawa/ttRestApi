@@ -1,4 +1,4 @@
-package model
+package ttrestapi.model
 
 import grails.gorm.services.Service
 

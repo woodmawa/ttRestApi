@@ -5,5 +5,5 @@ model {
     Long jsonApiBookCount
 }
 
-//map model name in index.gson to name of model variable in the base template _jsonApiBook
+//map ttrestapi.model name in customerRest.index.gson to name of ttrestapi.model variable in the base template _jsonApiBook
 json tmpl.jsonApiBook ( "myBook", jsonApiBookList)

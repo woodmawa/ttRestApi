@@ -1,9 +1,9 @@
-package model
+package ttrestapi.model
 
 import grails.testing.gorm.DomainUnitTest
 import spock.lang.Specification
 
-class CustomerSpec extends Specification implements DomainUnitTest<Customer> {
+class SiteSpec extends Specification implements DomainUnitTest<Site> {
 
     def setup() {
     }

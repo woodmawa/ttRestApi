@@ -1,0 +1,9 @@
+
+import ttrestapi.model.Site
+
+model {
+    List<Site> siteList
+    Long siteCount
+}
+
+json tmpl.siteRest (siteList)

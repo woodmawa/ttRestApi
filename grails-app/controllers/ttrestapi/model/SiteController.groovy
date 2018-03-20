@@ -1,30 +1,23 @@
-package model
+package ttrestapi.model
 
 import grails.validation.ValidationException
-import groovy.transform.CompileStatic
-
 import static org.springframework.http.HttpStatus.*
 
-@CompileStatic
-class SiteRestController {
-
-    static responseFormats = ['json']
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+class SiteController {
 
     SiteService siteService
 
+    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+
     def index(Integer max) {
-        println "SiteRest.index method invoked "
         params.max = Math.min(max ?: 10, 100)
         respond siteService.list(params), model:[siteCount: siteService.count()]
     }
 
     def show(Long id) {
-        println "SiteRest.show method invoked "
         respond siteService.get(id)
     }
 
-    /*
     def create() {
         respond new Site(params)
     }
@@ -103,5 +96,4 @@ class SiteRestController {
             '*'{ render status: NOT_FOUND }
         }
     }
-    */
 }

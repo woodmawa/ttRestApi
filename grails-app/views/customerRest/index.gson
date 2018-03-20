@@ -1,0 +1,12 @@
+
+import ttrestapi.model.Customer
+
+model {
+    List<Customer> customerList
+    Long customerCount
+}
+
+json tmpl.customerRest (customerList)
+/*json.customerList {
+    name "hello william"
+}*/

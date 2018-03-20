@@ -1,0 +1,12 @@
+import ttrestapi.model.Customer
+
+model {
+    Customer customer
+}
+
+//json jsonapi.render (customer, [jsonApiObject:true, deep:true])
+json g.render (customer , [deep:true])
+
+/*json.defaultTemplate {
+    name "william"
+}*/

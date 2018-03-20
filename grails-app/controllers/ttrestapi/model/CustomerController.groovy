@@ -1,4 +1,4 @@
-package model
+package ttrestapi.model
 
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*

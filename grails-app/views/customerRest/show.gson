@@ -1,0 +1,11 @@
+import ttrestapi.model.Customer
+
+model {
+    Customer customer
+}
+
+json tmpl.customerRest (customer)
+
+/*json.customer {
+    name "hello william"
+}*/
