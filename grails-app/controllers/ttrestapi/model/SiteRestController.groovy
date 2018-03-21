@@ -13,6 +13,12 @@ class SiteRestController {
 
     SiteService siteService
 
+    def work (action) {
+        println "siteRest: controler 'work' action called with $action"
+        render "{doing work $action}"
+    }
+
+
     def index(Integer max) {
         println "SiteRest.customerRest.index method invoked "
         params.max = Math.min(max ?: 10, 100)

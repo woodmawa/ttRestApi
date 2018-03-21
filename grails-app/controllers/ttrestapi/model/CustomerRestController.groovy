@@ -30,7 +30,19 @@ class CustomerRestController {
     def show(Long id) {
         println "CustomerRest.customerRest.show method invoked"
         //respond customerService.get(id), view:"fred"
-        respond customerService.get(id)
+
+        Customer result = customerService.get(id, [fetch:[sites:'join']])
+
+        println "show called with map options returns $result"
+
+        respond result
+    }
+
+    def action (String action) {
+
+        assert params
+        def result = params.collect {"$it.key = $it.value"}
+        render "doing action  on rest resource : " + result
     }
 
     /*

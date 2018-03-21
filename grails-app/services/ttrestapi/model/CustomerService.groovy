@@ -7,6 +7,8 @@ interface CustomerService {
 
     Customer get(Serializable id)
 
+    Customer get(Serializable id, Map args )
+
     List<Customer> list(Map args)
 
     Long count()

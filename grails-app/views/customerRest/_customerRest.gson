@@ -4,8 +4,10 @@ model {
     Customer customer
 }
 
-//json jsonapi.render (customer, [jsonApiObject:true, deep:true])
-json g.render (customer , [deep:true])
+json jsonapi.render (customer, [jsonApiObject:true, expand:['sites']] /*deep:true]*/)  //works
+//json jsonapi.render (customer, [jsonApiObject:true,  deep:true])  //deep:true doesnt seem to do anything diff
+//json g.render (customer , [deep:true])  //fails with stackoverflow
+//json g.render (customer , [expand:['sites']])  //renders ok
 
 /*json.defaultTemplate {
     name "william"
